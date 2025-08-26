@@ -9,8 +9,8 @@
 
 <body>
     <h2>Socket.IO Chat</h2>
-    
-    <ul id="messages"></ul>
+
+    <ul id="hello"></ul>
     <input id="msg" autocomplete="off" />
     <button onclick="sendMessage()">Send</button>
 
@@ -30,7 +30,7 @@
         socket.on('chat message', (msg) => {
             const li = document.createElement('li');
             li.textContent = msg;
-            document.getElementById('messages').appendChild(li);
+            document.getElementById('hello').appendChild(li);
         });
     </script>
 
