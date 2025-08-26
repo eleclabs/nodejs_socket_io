@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Chat</title>
+</head>
+
+<body>
+    <h2>Socket.IO Chat</h2>
+    
+    <ul id="messages"></ul>
+    <input id="msg" autocomplete="off" />
+    <button onclick="sendMessage()">Send</button>
+
+    <!-- โหลด socket.io client -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        const socket = io();
+
+        function sendMessage() {
+            const msg = document.getElementById('msg').value;
+            socket.emit('chat message', msg);
+            document.getElementById('msg').value = '';
+        }
+
+        // รับข้อความจาก server
+        socket.on('chat message', (msg) => {
+            const li = document.createElement('li');
+            li.textContent = msg;
+            document.getElementById('messages').appendChild(li);
+        });
+    </script>
+
+</body>
+
+</html>
